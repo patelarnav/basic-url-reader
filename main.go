@@ -35,6 +35,7 @@ func main() {
 		"https://apple.com",
     }
 
+	// worker goroutines
 	for _,url := range urls {
 		go func(url string){
 			req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -53,6 +54,7 @@ func main() {
 		}(url)
 	}
 
+	//main goroutine
 	for range len(urls){
 		result := <- ch
 		fmt.Printf("%s %s %s \n", result.Status, result.Urlstring, result.Error)
