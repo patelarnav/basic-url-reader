@@ -54,7 +54,7 @@ func main() {
 		}(url)
 	}
 
-	//main goroutine
+	//main goroutine waits for buffer 
 	for range len(urls){
 		result := <- ch
 		fmt.Printf("%s %s %s \n", result.Status, result.Urlstring, result.Error)
